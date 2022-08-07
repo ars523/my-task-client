@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import Spinner from "../componests/Spinner"
 import { reset, signIn, signUp } from "../features/auth/authSlice"
 import { TextFieldPrimary } from "../shared/textField"
+import {toast } from 'react-toastify';
 
 const withAuth = (WrappedComponent, entity) => {
 
@@ -15,7 +16,8 @@ const withAuth = (WrappedComponent, entity) => {
 
         useEffect(() => {
             if (isError) {
-                console.log(message)
+                toast.error(message)
+                reset()
             }
             if (isSuccess || user) {
                 navigate('/')

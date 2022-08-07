@@ -8,7 +8,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-
+import { ToastContainer} from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import NavBar from "./componests/NavBar";
 import PermanentDrawer from "./componests/PermanentDrawer";
 import NewTasks from "./pages/NewTasks";
@@ -70,6 +71,7 @@ function App() {
           </Route>
 
         </Routes>
+        <ToastContainer/>
       </Box>
     </Box>
   );

@@ -1,13 +1,22 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Tooltip } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useDispatch } from 'react-redux';
-import { deleteTask } from '../features/task/taskSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTask, reset } from '../features/task/taskSlice';
+import {toast} from 'react-toastify'
 
 const DeleteDialog = ({taskId}) => {
+    const {isSuccess, isError, message} = useSelector(state=>state.task)
     const dispatch = useDispatch()
     const [open, setOpen] = React.useState(false);
 
+    useEffect(()=>{
+        if(isError){
+            toast.error(message)
+        }
+        dispatch(reset())
+    }, [isSuccess, isError, message, dispatch])
+    
     const handleClickOpen = () => {
         setOpen(true);
     };

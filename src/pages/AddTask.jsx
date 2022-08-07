@@ -4,10 +4,11 @@ import { HeadingPrimary } from '../shared/heading';
 import { TextFieldPrimary } from '../shared/textField';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTask} from '../features/task/taskSlice';
+import { createTask, reset} from '../features/task/taskSlice';
 import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../componests/Spinner';
+import {toast } from 'react-toastify';
 
 
 const AddTask = () => {
@@ -17,11 +18,13 @@ const AddTask = () => {
 
     useEffect(()=>{
         if(isError){
-            console.log(message)
+            toast.error(message)
         }
         if(isSuccess){
             navigate('/')
+            toast.success('Created successfully')
         }
+        dispatch(reset())
     }, [ navigate, message, isError, dispatch, isSuccess])
 
     const [taskData, setTaskData] = useState({
