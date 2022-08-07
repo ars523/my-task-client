@@ -2,10 +2,9 @@ import React from 'react';
 import { Button, Container, Grid, Paper } from '@mui/material'
 import { HeadingPrimary } from '../shared/heading';
 import { TextFieldPrimary } from '../shared/textField';
-import { green } from '@mui/material/colors';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTask, reset } from '../features/task/taskSlice';
+import { createTask} from '../features/task/taskSlice';
 import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../componests/Spinner';
@@ -21,8 +20,7 @@ const AddTask = () => {
             console.log(message)
         }
         if(isSuccess){
-            dispatch(reset())
-            navigate('../')
+            navigate('/')
         }
     }, [ navigate, message, isError, dispatch, isSuccess])
 
@@ -59,7 +57,7 @@ const AddTask = () => {
                     <Grid item xs={12}>
                         <TextFieldPrimary
                             multiline rows={4}
-                            inputProps={{ style: { color: green[600] } }}
+                            inputProps={{ style: { color: '#0B72B9' } }}
                             label='Task Description' 
                             fullWidth
                             name ='taskDescription'

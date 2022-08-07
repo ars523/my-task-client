@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import {useSelector } from 'react-redux';
 import Spinner from '../componests/Spinner';
 import Tasks from '../componests/Tasks';
-import { getTasks } from '../features/task/taskSlice';
+import withTask from '../hoc/withTask';
 
 const Cancelled = () => {
-    const dispatch = useDispatch()
     const { isLoading } = useSelector(state => state.task)
-
-    useEffect(() => {
-        dispatch(getTasks('cancelled'))
-    }, [dispatch])
 
     if (isLoading) {
         return <Spinner />
@@ -20,4 +15,4 @@ const Cancelled = () => {
     );
 };
 
-export default Cancelled;
+export default withTask(Cancelled, 'cancelled');

@@ -1,7 +1,7 @@
 import React from 'react';
 import withAuth from '../hoc/withAuth';
 
-const Login = ({children}) => {
+const Registration = ({children}) => {
     return (
         <>
             {children}
@@ -9,4 +9,4 @@ const Login = ({children}) => {
     );
 };
 
-export default withAuth(Login, 'signin');
+export default withAuth(Registration, 'signup');

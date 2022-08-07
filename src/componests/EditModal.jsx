@@ -45,7 +45,7 @@ const EditModal = ({ taskId, status: taskStatus }) => {
             <Tooltip title='Edit Status'>
                 <IconButton
                     onClick={handleOpen}
-                    sx={{ color: 'primary.main' }}>
+                    sx={{ color: 'primary.main', ml: '0.5rem' }}>
                     <EditIcon />
                 </IconButton>
             </Tooltip>

@@ -110,6 +110,7 @@ export const taskSlice = createSlice({
             .addCase(createTask.rejected, (state, action)=>{
                 state.isLoading = false
                 state.isError = true
+                state.isSuccess = false
                 state.message = action.payload
             })
 
@@ -145,6 +146,7 @@ export const taskSlice = createSlice({
             .addCase(editTaskStatus.rejected, (state, action)=>{
                 state.isLoading = false
                 state.isError = true
+                state.isSuccess = false
                 state.message = action.payload
             })
     }

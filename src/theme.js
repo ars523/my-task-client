@@ -1,17 +1,12 @@
 import { createTheme } from '@mui/material/styles'
-import { green} from '@mui/material/colors'
 
 const primary = {
-    main: green[600],
-    background: green[100],
-    contrastText: green[50]
+    main: '#0B72B9',
 }
 const customizedTheme = createTheme({
     palette: {
         primary:{
             main: primary.main,
-            contrastText: primary.contrastText,
-            background: primary.background
         }
     },
 

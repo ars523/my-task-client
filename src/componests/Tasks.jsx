@@ -1,20 +1,15 @@
-import { Grid, IconButton, Paper, Stack, Tooltip, Typography } from '@mui/material';
+import { Grid, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { HeadingPrimary } from '../shared/heading';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Spinner from './Spinner';
-import { deleteTask } from '../features/task/taskSlice';
 import EditModal from './EditModal';
+import DeleteDialog from './DeleteDialog';
 
 const Tasks = (props) => {
-    const dispatch = useDispatch()
     const { tasks, isLoading } = useSelector(state => state.task)
 
-    const handleDelete = (taskId) => {
-        dispatch(deleteTask(taskId))
-    }
     if (isLoading) {
         return <Spinner></Spinner>
     }
@@ -44,16 +39,7 @@ const Tasks = (props) => {
                                     <Stack direction='raw' alignItems='center'>
                                         <Typography>{new Date(task.createdAt).toLocaleString('en-us')}</Typography>
                                         <EditModal taskId={task._id} status={task.status} />
-                                        <Tooltip title='Delete'>
-                                            <IconButton
-                                                onClick={() => handleDelete(task._id)}>
-                                                <DeleteIcon
-                                                    sx={{
-                                                        color: 'warning.main'
-                                                    }}
-                                                />
-                                            </IconButton>
-                                        </Tooltip>
+                                        <DeleteDialog taskId = {task._id}/>
                                     </Stack>
                                     <Box
                                         component='div'

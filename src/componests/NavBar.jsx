@@ -2,14 +2,16 @@ import React from 'react';
 import TaskIcon from '@mui/icons-material/Task';
 import {
     AppBar,
-    Avatar,
     Stack,
     Toolbar,
     Typography,
     useMediaQuery
 } from '@mui/material'
 import MobileDrawer from './MobileDrawer';
+import { useSelector } from 'react-redux';
+import AccountMenu from './AccountMenu';
 const NavBar = () => {
+    const { user } = useSelector(state => state.auth)
     const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));;
     return (
         <AppBar position="fixed" sx={{ zIndex: matches ? (theme) => theme.zIndex.drawer + 1 : null }}>
@@ -21,7 +23,7 @@ const NavBar = () => {
                         MY-Task
                     </Typography>
                 </Stack>
-                <Avatar sx={{ ml: 'auto' }} alt="Remy Sharp" />
+                {user && <AccountMenu/>}
             </Toolbar>
         </AppBar>
     );

@@ -44,6 +44,9 @@ const DrawerList = ({setOpen}) => {
             case "/login":
                 setSelectedItem(-1)
               break;
+            case "/registration":
+                setSelectedItem(-1)
+              break;
          
             default:
                 setSelectedItem(2)

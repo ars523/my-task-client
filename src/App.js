@@ -20,6 +20,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Login from "./pages/Login";
 import PrivateRoute from "./componests/PrivateRoute";
 import Completed from "./pages/Completed";
+import Registration from "./pages/Registration";
 
 
 function App() {
@@ -40,15 +41,34 @@ function App() {
       >
         <Toolbar />
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration/>} />
+
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<NewTasks />} />
           </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/addTask" element={<AddTask />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/progress" element={<InProgress />} />
-          <Route path="/cancelled" element={<Cancelled />} />
-          <Route path="/completed" element={<Completed />} />
+
+
+          <Route path="/addTask" element={<PrivateRoute/>}>
+            <Route path="/addTask" element={<AddTask />} />
+          </Route>
+
+          <Route path="/dashboard" element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+
+          <Route path="/progress" element={<PrivateRoute />}>
+            <Route path="/progress" element={<InProgress />} />
+          </Route>
+
+          <Route path="/cancelled" element={<PrivateRoute />}>
+            <Route path="/cancelled" element={<Cancelled />} />
+          </Route>
+
+          <Route path="/completed" element={<PrivateRoute />}>
+            <Route path="/completed" element={<Completed />} />
+          </Route>
+
         </Routes>
       </Box>
     </Box>

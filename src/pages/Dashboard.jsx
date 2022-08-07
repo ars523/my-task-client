@@ -1,17 +1,12 @@
 import { Grid, Paper, Typography } from '@mui/material';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Spinner from '../componests/Spinner';
-import { getTasks } from '../features/task/taskSlice';
+import withTask from '../hoc/withTask';
 import { HeadingPrimary } from '../shared/heading';
 
 const Dashboard = () => {
-    const dispatch = useDispatch()
     const { isLoading, tasks } = useSelector(state => state.task)
-    useEffect(() => {
-        dispatch(getTasks('dashboard'))
-    }, [dispatch])
-
+    
     const getCountOfTaskStatus = (status) => {
         const count = tasks.filter(task => task.status === status).length
         return count
@@ -58,4 +53,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default withTask(Dashboard, 'dashboard');
