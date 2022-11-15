@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = '/api/todos/'
+const URL = process.env.REACT_APP_API_URL+'/api/todos/'
 
 //Get all Tasks
 const getTasks = async (token, taskVariation)=>{
