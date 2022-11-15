@@ -1,15 +1,17 @@
-import { Button, Container, Grid, Paper, Typography } from "@mui/material"
+import { Button, Container, Grid, Paper, Stack, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Spinner from "../componests/Spinner"
 import { reset, signIn, signUp } from "../features/auth/authSlice"
 import { TextFieldPrimary } from "../shared/textField"
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useTheme } from '@mui/material/styles';
 
 const withAuth = (WrappedComponent, entity) => {
 
     const NewComponent = () => {
+        const theme = useTheme();
         const dispatch = useDispatch()
         const navigate = useNavigate()
         const { user, isSuccess, isError, isLoading, message } = useSelector(state => state.auth)
@@ -38,7 +40,7 @@ const withAuth = (WrappedComponent, entity) => {
             password: '',
             confirmPassword: '',
         })
-        const {name, email, password} = singInInfo
+        const { name, email, password } = singInInfo
 
         const onSubmit = (e) => {
             e.preventDefault()
@@ -47,7 +49,7 @@ const withAuth = (WrappedComponent, entity) => {
                 dispatch(signIn({ email, password }))
             }
             else if (entity === 'signup') {
-                dispatch(signUp({name, email, password}))
+                dispatch(signUp({ name, email, password }))
             }
 
 
@@ -58,7 +60,7 @@ const withAuth = (WrappedComponent, entity) => {
             newSignInInfo[e.target.name] = e.target.value;
             setSignInInfo(newSignInInfo)
 
-            if(e.target.name === 'name'){
+            if (e.target.name === 'name') {
                 let isNameValid = e.target.value.length >= 3
                 const newErrorText = { ...errorText }
                 if (!isNameValid) {
@@ -117,7 +119,10 @@ const withAuth = (WrappedComponent, entity) => {
         if (isLoading) {
             return <Spinner />
         }
-
+        const linkStyle = {
+            color: theme.palette.primary.main,
+            fontWeight: '600'
+        }
         return <WrappedComponent>
             <Container maxWidth='sm'
                 sx={{
@@ -210,16 +215,35 @@ const withAuth = (WrappedComponent, entity) => {
                                             disabled={singInInfo.email.length < 1 ||
                                                 singInInfo.password.length < 1 ||
                                                 singInInfo.confirmPassword.length < 1 ||
-                                                singInInfo.name.length <1 ||
+                                                singInInfo.name.length < 1 ||
                                                 errorText.email !== '' ||
                                                 errorText.password !== '' ||
-                                                errorText.confirmPassword !== ''||
+                                                errorText.confirmPassword !== '' ||
                                                 errorText.name !== ''
                                             }
                                         >
                                             Signup
                                         </Button>
                                     )
+                            }
+                        </Grid>
+                        <Grid item xs={12}>
+                            {
+                                entity === 'signin' ? (
+                                    <Stack direction='row' alignItems='center' spacing={2}>
+                                        <Typography variant="h6">
+                                            No account?
+                                        </Typography>
+                                        <Link to='/registration' style={linkStyle}>Signup</Link>
+                                    </Stack>
+                                ) : (
+                                    <Stack direction='row' alignItems='center' spacing={2}>
+                                        <Typography variant="h6">
+                                            Already have an account?
+                                        </Typography>
+                                        <Link to='/login' style={linkStyle}>Login</Link>
+                                    </Stack>
+                                )
                             }
                         </Grid>
                     </Grid>

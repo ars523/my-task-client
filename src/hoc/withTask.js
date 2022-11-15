@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch,} from 'react-redux'
-import { getTasks, reset} from '../features/task/taskSlice';
+import { getTasks} from '../features/task/taskSlice';
 
 const withTask = (WrappedComponent, entity) =>{
 
