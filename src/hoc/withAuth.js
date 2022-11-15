@@ -241,7 +241,7 @@ const withAuth = (WrappedComponent, entity) => {
                                         <Typography variant="h6">
                                             Already have an account?
                                         </Typography>
-                                        <Link to='/login' style={linkStyle}>Login</Link>
+                                        <Link to='/login' style={linkStyle}>signin</Link>
                                     </Stack>
                                 )
                             }
