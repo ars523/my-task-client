@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { isLoading, tasks } = useSelector(state => state.task)
     
     const getCountOfTaskStatus = (status) => {
-        const count = tasks.filter(task => task.status === status).length
+        const count = tasks?.filter(task => task.status === status).length
         return count
     }
 

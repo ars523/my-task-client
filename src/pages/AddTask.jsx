@@ -4,8 +4,7 @@ import { HeadingPrimary } from '../shared/heading';
 import { TextFieldPrimary } from '../shared/textField';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTask, reset} from '../features/task/taskSlice';
-import { useEffect } from 'react';
+import { createTask} from '../features/task/taskSlice';
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../componests/Spinner';
 import {toast } from 'react-toastify';
@@ -14,18 +13,8 @@ import {toast } from 'react-toastify';
 const AddTask = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {isSuccess, isLoading, isError, message} = useSelector(state=>state.task)
+    const {isLoading} = useSelector(state=>state.task)
 
-    useEffect(()=>{
-        if(isError){
-            toast.error(message)
-        }
-        if(isSuccess){
-            navigate('/')
-            toast.success('Created successfully')
-        }
-        dispatch(reset())
-    }, [ navigate, message, isError, dispatch, isSuccess])
 
     const [taskData, setTaskData] = useState({
         taskName: '',
@@ -37,6 +26,14 @@ const AddTask = () => {
     const handleCreateTask = (e)=>{
         e.preventDefault()
         dispatch(createTask(taskData))
+        .unwrap()
+        .then((res) => {
+            navigate('/')
+            toast.success('Created successfully')
+        })
+        .catch(error=>{
+            toast.error(error)
+        })
 
     }
     if(isLoading){

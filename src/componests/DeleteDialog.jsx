@@ -6,16 +6,13 @@ import { deleteTask, reset } from '../features/task/taskSlice';
 import {toast} from 'react-toastify'
 
 const DeleteDialog = ({taskId}) => {
-    const {isSuccess, isError, message} = useSelector(state=>state.task)
+    const {isSuccess} = useSelector(state=>state.task)
     const dispatch = useDispatch()
     const [open, setOpen] = React.useState(false);
 
     useEffect(()=>{
-        if(isError){
-            toast.error(message)
-        }
         dispatch(reset())
-    }, [isSuccess, isError, message, dispatch])
+    }, [isSuccess, dispatch])
     
     const handleClickOpen = () => {
         setOpen(true);
@@ -28,6 +25,9 @@ const DeleteDialog = ({taskId}) => {
     const handleDelete = () => {
         handleClose()
         dispatch(deleteTask(taskId))
+        .unwrap()
+        .then(()=>toast.success('Deleted successfully'))
+        .catch((error)=>toast.error(error))
     }
     return (
         <div>

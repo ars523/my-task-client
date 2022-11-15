@@ -1,7 +1,7 @@
 import axios from 'axios'
 const URL = '/api/todos/'
 
-//Get all user Tasks
+//Get all Tasks
 const getTasks = async (token, taskVariation)=>{
     const config = {
         headers:{

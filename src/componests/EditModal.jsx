@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { editTaskStatus } from '../features/task/taskSlice';
-
+import {toast } from 'react-toastify';
 const EditModal = ({ taskId, status: taskStatus }) => {
     const style = {
         position: 'absolute',
@@ -38,6 +38,9 @@ const EditModal = ({ taskId, status: taskStatus }) => {
     const handleSubmit = () => {
         handleClose()
         dispatch(editTaskStatus({ taskId, status }))
+        .unwrap()
+        .then(()=>toast.success('Edited successfully'))
+        .catch((error)=>toast.error(error))
 
     }
     return (
