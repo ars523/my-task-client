@@ -16,7 +16,7 @@ const Tasks = (props) => {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <HeadingPrimary variant='h4' component='h1'>
+                <HeadingPrimary variant='h5' component='h1'>
                     {props.heading}
                 </HeadingPrimary>
             </Grid>
@@ -43,13 +43,13 @@ const Tasks = (props) => {
                                     }}
                                     >
                                         <Typography
-                                            variant='h5'
+                                            variant='subtitle1'
                                             component='h2'
                                             sx={{ mb: '0.75rem', color: 'grey.800' }}>
                                             {task.todo}
                                         </Typography>
                                         <Typography
-                                            variant='subtitle1'
+                                            variant='body2'
                                             sx={{ mb: '0.75rem', color: 'grey.700' }}>
                                             {task.description}
                                         </Typography>

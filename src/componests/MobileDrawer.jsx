@@ -1,9 +1,9 @@
-import { IconButton, SwipeableDrawer, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { Divider, IconButton, SwipeableDrawer, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 import { useState } from 'react';
 import DrawerList from './DrawerList';
-
+import CloseIcon from '@mui/icons-material/Close';
 const MobileDrawer = () => {
     const [open, setOpen] = useState(false)
     const matches = useMediaQuery((theme) => theme.breakpoints.up('sm'));
@@ -29,6 +29,9 @@ const MobileDrawer = () => {
                     flexShrink: 0,
                     [`& .MuiDrawer-paper`]: { boxSizing: 'border-box', backgroundColor: 'primary.main', color: 'primary.contrastText' },
                 }}
+                PaperProps={{
+                    sx: { width: "70%" },
+                  }}
             >
                 <Toolbar>
                     <IconButton
@@ -40,10 +43,11 @@ const MobileDrawer = () => {
                             pl: 0
                         }}
                     >
-                        <MenuIcon sx={{ fontSize: 36 }} />
+                        <CloseIcon sx={{ fontSize: 24 }} />
                     </IconButton>
-                    <Typography variant='h6'>MY-Task</Typography>
+                    <Typography variant='h6'>My-Task</Typography>
                 </Toolbar>
+                <Divider/>
                 <DrawerList setOpen={setOpen} />
             </SwipeableDrawer>
         </>

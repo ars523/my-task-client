@@ -3,15 +3,14 @@ import {useSelector } from 'react-redux';
 import Spinner from '../componests/Spinner';
 import Tasks from '../componests/Tasks';
 import withTask from '../hoc/withTask';
+import LayoutPrimary from '../layouts/LayoutPrimary';
 
 const Cancelled = () => {
     const { isLoading } = useSelector(state => state.task)
-
-    if (isLoading) {
-        return <Spinner />
-    }
     return (
-        <Tasks heading={'Cancelled Tasks'} />
+        <LayoutPrimary>
+            {isLoading? <Spinner/>: <Tasks heading={'Cancelled Tasks'} />}
+        </LayoutPrimary>
     );
 };
 

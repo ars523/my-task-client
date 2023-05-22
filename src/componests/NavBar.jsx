@@ -20,7 +20,7 @@ const NavBar = () => {
                 <Stack direction='row' alignItems='center' spacing={1}>
                     <TaskIcon />
                     <Typography variant="h6" noWrap component="div">
-                        MY-Task
+                        My-Task
                     </Typography>
                 </Stack>
                 {user && <AccountMenu/>}
