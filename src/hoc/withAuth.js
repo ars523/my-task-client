@@ -89,7 +89,7 @@ const withAuth = (WrappedComponent, entity) => {
                 let isPasswordValid = e.target.value.length >= 6
                 const newErrorText = { ...errorText }
                 if (!isPasswordValid) {
-                    newErrorText.password = 'Enter correct password'
+                    newErrorText.password = 'Length should be 6 or more'
                     setErrorText(newErrorText)
                 }
                 else {
@@ -231,17 +231,21 @@ const withAuth = (WrappedComponent, entity) => {
                             {
                                 entity === 'signin' ? (
                                     <Stack direction='row' alignItems='center' spacing={2}>
-                                        <Typography variant="h6">
+                                        <Typography variant="subtitle1">
                                             No account?
                                         </Typography>
-                                        <Link to='/registration' style={linkStyle}>Signup</Link>
+                                        <Typography variant="subtitle1">
+                                            <Link to='/registration' style={linkStyle}>Signup</Link>
+                                        </Typography>
                                     </Stack>
                                 ) : (
                                     <Stack direction='row' alignItems='center' spacing={2}>
-                                        <Typography variant="h6">
+                                        <Typography variant="subtitle1">
                                             Already have an account?
                                         </Typography>
-                                        <Link to='/login' style={linkStyle}>signin</Link>
+                                        <Typography variant="subtitle1">
+                                            <Link to='/login' style={linkStyle}>Signin</Link>
+                                        </Typography>
                                     </Stack>
                                 )
                             }

@@ -7,6 +7,11 @@ import EditModal from './EditModal';
 import DeleteDialog from './DeleteDialog';
 import Error from './Error';
 
+const truncate = {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+}
 const Tasks = (props) => {
     const { tasks, isLoading } = useSelector(state => state.task)
 
@@ -43,14 +48,18 @@ const Tasks = (props) => {
                                     }}
                                     >
                                         <Typography
-                                            variant='subtitle1'
+                                            variant='h6'
                                             component='h2'
-                                            sx={{ mb: '0.75rem', color: 'grey.800' }}>
+                                            sx={{
+                                                mb: '0.5rem',
+                                                color: 'GrayText',
+                                                ...truncate
+                                            }}>
                                             {task.todo}
                                         </Typography>
                                         <Typography
                                             variant='body2'
-                                            sx={{ mb: '0.75rem', color: 'grey.700' }}>
+                                            sx={{ color: 'grey.700', mb:'1rem', ...truncate }}>
                                             {task.description}
                                         </Typography>
                                         <Stack direction="row" justifyContent='space-between' alignItems='center'>
